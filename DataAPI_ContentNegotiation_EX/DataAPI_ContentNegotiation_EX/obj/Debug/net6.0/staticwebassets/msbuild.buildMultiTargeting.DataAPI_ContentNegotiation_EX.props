@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DataAPI_ContentNegotiation_EX.props" />
+</Project>

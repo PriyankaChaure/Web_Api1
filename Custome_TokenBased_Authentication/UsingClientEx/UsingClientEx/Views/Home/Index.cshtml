@@ -1,0 +1,210 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Jquery Ajax</title>
+
+    <script src="~/jquery/jquery.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var url = "http://localhost:5283/api/product";
+
+            function GetAllProducts() 
+            {
+            $.ajax({
+                url: url+"?token="+sessionStorage.utoken,
+                type: "Get",
+                contentType: "application/json",
+                success: function (result) {
+                  //   alert(JSON.stringify(result));
+                  if(result == "Invalid Token!")
+                  {
+                      alert("Invalid Token!");
+                      location.href = "/Home/SignIn";
+                  }
+                    $("#tb").empty();
+                    var str = "";
+                    for (var i = 0; i < result.length; i++) {
+                        str = "<tr><td>" + result[i].productID + "</td>";
+                        str += "<td>" + result[i].productName + "</td>";
+                        str += "<td>" + result[i].mfgName + "</td>";
+                        str += "<td>" + result[i].price + "</td></tr>";
+                        $("#tb").append(str);
+                    }
+                },
+                error: function (err) {
+
+                }
+            });
+            }
+            GetAllProducts();
+
+            function makeempty() 
+            {
+                $("#pn").val("");
+                $("#mn").val("");
+                $("#pr").val("");
+            }
+
+            $("#btncreate").click(function () {
+                var rec = { "ProductName": $("#pn").val(), "MfgName": $("#mn").val(), "Price": $("#pr").val() };
+                $.ajax({
+                    url: url + "?token=" + sessionStorage.utoken,
+                    type: "Post",
+                    data: JSON.stringify(rec),
+                    contentType: "application/json",
+                    success: function (result) {
+                        alert(JSON.stringify(result));
+                        GetAllProducts();
+                        makeempty();
+                        $("#err").html("");
+                    },
+                    error: function (err) {
+                        alert(JSON.stringify(err));
+                        $("#err").html(JSON.stringify(err));
+                    }
+                });
+            });
+            $("#btnsearch").click(function () {
+                $.ajax({
+                    url: url + "/" + $("#pi").val() + "?token=" + sessionStorage.utoken,
+                        type:"Get",
+                        contentType:"application/json",
+                    success: function (result)
+                    {
+                        if (result != null) 
+                        { 
+                            $("#pi").val(result.productID);
+                            $("#pn").val(result.productName);
+                            $("#mn").val(result.mfgName);
+                            $("#pr").val(result.price);
+                        }
+                    },
+                    error: function (err)
+                    { 
+                        alert(JSON.stringify(err));
+                        $("#err").html(JSON.stringify(err));
+                    }
+                });
+            });
+
+            $("#btnedit").click(function () {
+                var rec = { "ProductId":$("#pi").val(),"ProductName": $("#pn").val(), "MfgName": $("#mn").val(), "Price": $("#pr").val() };
+                $.ajax({
+                    url: url + "?token=" + sessionStorage.utoken,
+                    type: "Put",
+                    data: JSON.stringify(rec),
+                    contentType: "application/json",
+                    success: function (result) {
+                        alert(JSON.stringify(result));
+                        makeempty();
+                        GetAllProducts();
+                        $("#err").html("");
+                    },
+                    error: function (err) {
+                        alert(JSON.stringify(err));
+                        $("#err").html(JSON.stringify(err));
+                    }
+                });
+            });
+
+            $("#btndelete").click(function () {
+                $.ajax({
+                    url: url + "/" + $("#pi").val() + "?token=" + sessionStorage.utoken,
+                    type:"Delete",
+                    contentType:"application/json",
+                    success:function(result)
+                    {
+                        alert(JSON.stringify(result));
+                        makeempty();
+                        GetAllProducts();
+                    },
+                    error: function (err) { 
+                        alert(JSON.stringify(err));
+                        $("#err").html(JSON.stringify(err));
+                    }
+                });
+            });
+
+            $("#btnpatch").click(function () {
+                var patch = [{"path":"/ProductName","op":"replace","value":"test"}];
+                $.ajax({
+                    url: url + "/" + $("#pi").val() + "?token=" + sessionStorage.utoken,
+                    type:"Patch",
+                    data:JSON.stringify(patch),
+                    contentType:"application/json",
+                    success: function (result) { 
+                        alert(JSON.stringify(result));
+                        GetAllProducts();
+                    },
+                    error:function(err)
+                    {
+                        alert(JSON.stringify(err));
+                        $("#err").html(JSON.stringify(err));
+                    }
+                });
+            });
+            $("#btnlogout").click(function () {
+                sessionStorage.clear();
+                location.href = "/Home/SignIn";
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+    <div id="err" style="background-color:yellow;color:red;"></div>
+    <table>
+        <tr><td> <input type="submit" value="Logout" id="btnlogout" /></td></tr>
+        <tr>
+            <td>Product Id:</td>
+            <td><input type="text" id="pi" /></td>
+        </tr>
+        <tr>
+            <td>Product Name:</td>
+            <td><input type="text" id="pn" /></td>
+        </tr>
+        <tr>
+            <td>Mfg Name:</td>
+            <td><input type="text" id="mn" /></td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="text" id="pr" /></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Search" id="btnsearch" />
+                <input type="submit" value="Create" id="btncreate"/>
+                <input type="submit" value="Edit" id="btnedit" />
+                <input type="submit" value="Delete" id="btndelete" />
+                <input type="submit" value="Patch" id="btnpatch" />
+            </td>
+        </tr>
+    </table>
+
+    
+
+    <h2>Product List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product Id</th>
+                <th>Product Name</th>
+                <th>Mfg Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="tb">
+           
+        </tbody>
+    </table>
+</body>
+</html>

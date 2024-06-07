@@ -1,0 +1,94 @@
+﻿<html>
+    <head>
+        <title>Sign In</title>
+    <script src="~/jquery/jquery.js"></script>
+    <script type="text/javascript">
+        $(function () { 
+            $("#btnsignin").click(function () {
+                var url = "http://localhost:5283/api/Authentication";
+                var rec = { "EmailId": $("#ei").val(), "Password": $("#ps").val() };
+                $.ajax({
+                    url:url,
+                    type:"Post",
+                    data:JSON.stringify(rec),
+                    contentType:"application/json",
+                    success: function (result) {
+                        
+                        if (result == "Invalid EmailId Or Password!! ") {
+                            alert(result);
+                        }
+                        else { 
+                            sessionStorage.utoken = result;
+                            location.href = "/Home/Index";
+                        }
+                    },
+                    error: function (err) {
+
+                    }
+                });  
+            });
+            $("#btnsignup").click(function () {
+                var url = "http://localhost:5283/api/product";
+               // var rec = { "EmailId": $("#ei").val(), "Password": $("#ps").val() };
+                $.ajax({
+                    url: url,
+                    type: "Get",
+                   // data: JSON.stringify(rec),
+                    contentType: "application/json",
+                    success: function (result) {
+
+                        if (result == "Invalid EmailId Or Password!! ") {
+                            alert(result);
+                        }
+                        else {
+                           // sessionStorage.utoken = result;
+                            location.href = "/Home/SignUp";
+                        }
+                    },
+                    error: function (err) {
+
+                    }
+                });
+            });
+            // $("#btnsignup").click(function () {
+            //     var url = "http://localhost:5189/Home/SignUp";
+            //         $.ajax({
+            //         url: url,
+            //         type: "Get",
+            //         contentType: "application/json",
+            //         success: function (result) {
+
+            //             //if (result == "Invalid EmailId Or Password!! ") {
+            //                 alert(JSON.stringify(result));
+            //          //  }
+            //            // else {
+            //               //  sessionStorage.utoken = result;
+            //                 location.href = "/Home/SignUp";
+            //            }
+            //         },
+            //         error: function (err) {
+            //             alert(JSON.stringify(err));
+            //         }
+            //     });
+            // });
+        });
+        </script>
+    </head>
+    <body>
+        <h2>Sign In</h2>
+        <table>
+            <tr>
+                <td>Email Id</td>
+                <td><input type="text" id="ei"/></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" id="ps"/></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="SignIn" id="btnsignin"/></td>
+            <td><input type="submit" value="SignUp" id="btnsignup" /></td>
+            </tr>
+        </table>
+    </body>
+</html>

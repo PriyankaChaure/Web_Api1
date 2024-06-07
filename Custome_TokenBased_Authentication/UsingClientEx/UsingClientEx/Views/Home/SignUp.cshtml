@@ -1,0 +1,60 @@
+﻿
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SignUp</title>
+    <script src="~/jquery/jquery.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnsignup").click(function () {
+                var url = "http://localhost:5283/api/product";
+                var rec = { "FirstName":$("#fn").val(),"LastName":$("#ln").val(),EmailId": $("#ei").val(), "Password": $("#ps").val() };
+                $.ajax({
+                    url: url,
+                    type: "Post",
+                    data: JSON.stringify(rec),
+                    contentType: "application/json",
+                    success: function (result) {
+
+                       // if (result == "Invalid EmailId Or Password!! ") {
+                            alert(result);
+                       // }
+                     //   else {
+                          //  sessionStorage.utoken = result;
+                            location.href = "/Home/Index";
+                      //  }
+                    },
+                    error: function (err) {
+
+                    }
+                });
+            }); 
+        });
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>First Name</td>
+            <td><input type="text" id="fn" /></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input type="text" id="ln" /></td>
+        </tr>
+        <tr>
+        <tr>
+            <td>Email Id</td>
+            <td><input type="text" id="ei" /></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" id="ps" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="SignUp" id="btnsignup" /></td>
+        </tr>
+    </table>
+</body>
+</html>

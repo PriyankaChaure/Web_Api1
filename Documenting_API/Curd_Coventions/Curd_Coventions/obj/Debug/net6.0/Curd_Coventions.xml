@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Curd_Coventions</name>
+    </assembly>
+    <members>
+        <member name="M:Curd_Coventions.Controllers.ProductController.getproducts">
+            <summary>
+            This is used for to call get product
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Curd_Coventions.Controllers.ProductController.GetById(System.Int64)">
+            <summary>
+            This is used for get id 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Curd_Coventions.Controllers.ProductController.Create(Curd_Coventions.Models.Product)">
+            <summary>
+            This is used for create
+            </summary>
+            <param name="rec"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Curd_Coventions.Controllers.ProductController.Edit(Curd_Coventions.Models.Product)">
+            <summary>
+            This is used for Edit
+            </summary>
+            <param name="rec"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Curd_Coventions.Controllers.ProductController.Delete(System.Int64)">
+            <summary>
+            This is used for Delete
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Curd_Coventions.Migrations.databasecreate">
+            <inheritdoc />
+        </member>
+        <member name="M:Curd_Coventions.Migrations.databasecreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Curd_Coventions.Migrations.databasecreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Curd_Coventions.Migrations.databasecreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

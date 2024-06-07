@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "LG8AS8ebQQLz2A0E01g/XM5isOoqymKzTFjZgl7yYzc=",
+  "Source": "UsingClientEx",
+  "BasePath": "_content/UsingClientEx",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "UsingClientEx\\wwwroot",
+      "Source": "UsingClientEx",
+      "ContentRoot": "C:\\Ankit\\Web_API\\Client-Server_Ex\\UsingClientEx\\UsingClientEx\\wwwroot\\",
+      "BasePath": "_content/UsingClientEx",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Ankit\\Web_API\\Client-Server_Ex\\UsingClientEx\\UsingClientEx\\wwwroot\\jquery\\jquery.js",
+      "SourceId": "UsingClientEx",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Ankit\\Web_API\\Client-Server_Ex\\UsingClientEx\\UsingClientEx\\wwwroot\\",
+      "BasePath": "_content/UsingClientEx",
+      "RelativePath": "jquery/jquery.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\jquery\\jquery.js"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Ankit\\Web_API\\Client-Server_Ex\\UsingClientEx\\UsingClientEx\\wwwroot\\jquery\\jquery.js",
+      "PackagePath": "staticwebassets\\jquery\\jquery.js"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.UsingClientEx.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.UsingClientEx.props",
+      "PackagePath": "build\\UsingClientEx.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.UsingClientEx.props",
+      "PackagePath": "buildMultiTargeting\\UsingClientEx.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.UsingClientEx.props",
+      "PackagePath": "buildTransitive\\UsingClientEx.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

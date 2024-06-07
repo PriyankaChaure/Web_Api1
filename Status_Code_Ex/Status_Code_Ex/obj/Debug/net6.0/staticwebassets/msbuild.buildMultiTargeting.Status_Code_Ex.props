@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Status_Code_Ex.props" />
+</Project>
